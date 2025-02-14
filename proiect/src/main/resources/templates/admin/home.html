@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Admin - Acasă</title>
+  <link href="/css/styles.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<h1>Bun venit, <span th:text="${username}">Admin</span>!</h1>
+<ul>
+  <li><a href="/admin/filme-populare" class="primary-button"><i class="fas fa-film"></i> Filme Populare</a></li>
+  <li><a href="/admin/genuri" class="primary-button"><i class="fas fa-list-alt"></i> Genuri Populare</a></li>
+  <li><a href="/admin/utilizatori" class="primary-button"><i class="fas fa-users"></i> Gestionare Utilizatori</a></li>
+  <li><a href="/admin/filme" class="primary-button"><i class="fas fa-edit"></i> Gestionare Filme</a></li>
+  <li><a href="/admin/recenzii" class="primary-button"><i class="fas fa-comments"></i> Gestionare Recenzii</a></li>
+</ul>
+<button class="logout" onclick="window.location.href='/logout'">Logout</button>
+
+
+</body>
+</html>

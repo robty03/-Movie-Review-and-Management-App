@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Recenzii Admin</title>
+  <link href="/css/styles.css" rel="stylesheet">
+  <script>
+  function confirmDelete() {
+  return confirm("Ești sigur că vrei să ștergi acest film?");
+  }
+  </script>
+</head>
+<body>
+<h1>Toate Recenziile</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Film</th>
+    <th>Utilizator</th>
+    <th>Rating</th>
+    <th>Text</th>
+    <th>Status</th>
+    <th>Acțiuni</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="recenzie : ${recenzii}">
+    <td th:text="${recenzie.film.titlu}"></td>
+    <td th:text="${recenzie.utilizator.username}"></td>
+    <td th:text="${recenzie.rating}"></td>
+    <td th:text="${recenzie.text}"></td>
+    <td th:text="${recenzie.status}"></td>
+    <td>
+      <a th:href="@{/admin/recenzii/aproba/{id}(id=${recenzie.id})}" class="btn btn-success">Aprobă</a>
+      <a th:href="@{/admin/recenzii/neaproba/{id}(id=${recenzie.id})}" class="btn btn-danger">Neaprobă</a>
+
+      <button class="danger-button"
+              th:onclick="|if (confirm('Ești sigur că vrei să ștergi această recenzie?')) location.href='/admin/recenzii/sterge/' + ${recenzie.id};|">
+        Șterge
+      </button>
+
+    </td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(recenzii)}">
+    <td colspan="6">Nu există recenzii disponibile.</td>
+  </tr>
+  </tbody>
+</table>
+<a th:href="@{/admin/home}" class="secondary-button">Înapoi la Home</a>
+</body>
+</html>

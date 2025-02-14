@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Filmele Favorite</title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <script>
+        function confirmDelete() {
+            return confirm("Ești sigur că vrei să ștergi acest film din favorite?");
+        }
+    </script>
+</head>
+
+<div class="container">
+    <h1>Filmele Favorite</h1>
+    <h2>Adaugă un film nou la favorite</h2>
+    <form th:action="@{/user/add-favorite}" method="post">
+        <select name="filmId" required>
+            <option th:each="film : ${availableMovies}" th:value="${film.id}" th:text="${film.titlu}">Selectează un film</option>
+        </select>
+        <button type="submit" class="primary-button">Adaugă la Favorite</button>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Titlu</th>
+            <th>Gen</th>
+            <th>Descriere</th>
+            <th>Acțiuni</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="film : ${favoriteMovies}">
+            <td th:text="${film.titlu}"></td>
+            <td th:text="${film.gen}"></td>
+            <td th:text="${film.descriere}"></td>
+            <td>
+                <form th:action="@{/user/remove-favorite}" method="post" onsubmit="return confirmDelete();">
+                    <input type="hidden" name="favoriteId" th:value="${film.id}">
+                    <button type="submit" class="danger-button">Șterge</button>
+                </form>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(favoriteMovies)}">
+            <td colspan="4">Nu există filme favorite.</td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/user/home}" class="secondary-button">Înapoi la Home</a>
+</div>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Recenziile Mele</title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <script>
+        function confirmDelete() {
+            return confirm("Ești sigur că vrei să ștergi acest film din favorite?");
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Recenziile Mele</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Film</th>
+            <th>Rating</th>
+            <th>Text</th>
+            <th>Status</th>
+            <th>Acțiuni</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="recenzie : ${recenzii}">
+            <td th:text="${recenzie.film.titlu}"></td>
+            <td th:text="${recenzie.rating}"></td>
+            <td th:text="${recenzie.text}"></td>
+            <td th:text="${recenzie.status}">În curs de aprobare</td>
+            <td>
+                <form th:action="@{/user/delete-recenzie}" method="post" style="display:inline;" onsubmit="return confirmDelete();">
+                    <input type="hidden" name="id" th:value="${recenzie.id}" />
+                    <button type="submit" class="danger-button">Șterge</button>
+                </form>
+                <a th:href="@{/user/edit-recenzie(id=${recenzie.id})}" class="btn btn-primary">Editează</a>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(recenzii)}">
+            <td colspan="5">Nu există recenzii disponibile.</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="button-group">
+        <a th:href="@{/user/add-recenzie}" class="primary-button large">Adaugă Recenzie</a>
+        <a th:href="@{/user/home}" class="secondary-button large">Înapoi la Home</a>
+    </div>
+</div>
+</body>
+</html>

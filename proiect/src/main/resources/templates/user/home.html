@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Utilizator - Acasă</title>
+  <link href="/css/styles.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<h1>Bun venit, <span th:text="${username}">utilizator</span>!</h1>
+<ul>
+  <li><a th:href="@{/user/filme-populare}" class="primary-button"><i class="fas fa-film"></i> Filme Populare</a></li>
+  <li><a th:href="@{/user/filme-genuri}" class="primary-button"><i class="fas fa-list-alt"></i> Genuri Populare</a></li>
+  <li><a th:href="@{/user/favorite}" class="primary-button"><i class="fas fa-heart"></i> Filmele Favorite</a></li>
+  <li><a th:href="@{/user/recenzii-mele}" class="primary-button"><i class="fas fa-comments"></i> Recenziile Mele</a></li>
+</ul>
+<button class="logout" onclick="window.location.href='/logout'">Logout</button>
+</body>
+</html>

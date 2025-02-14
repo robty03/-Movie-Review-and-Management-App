@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Admin - Genuri Populare</title>
+  <link href="/css/styles.css" rel="stylesheet">
+
+</head>
+<body>
+<h1>Genuri Populare</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Gen</th>
+    <th>Număr Filme</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="genre : ${genres}">
+    <td th:text="${genre.gen}">Gen</td>
+    <td th:text="${genre.numarFilme}">Număr Filme</td>
+  </tr>
+  </tbody>
+</table>
+
+<a th:href="@{/user/home}" class="secondary-button">Înapoi la Home</a>
+
+</body>
+</html>

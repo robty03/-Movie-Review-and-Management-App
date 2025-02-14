@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Top Filme</title>
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>Top Filme după Rating</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Titlu</th>
+            <th>Gen</th>
+            <th>Rating Mediu</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="film : ${popularFilms}">
+            <td th:text="${film.titlu}"></td>
+            <td th:text="${film.gen}"></td>
+            <td th:text="${film.rating}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin/home}" class="secondary-button">Înapoi la Home</a>
+</div>
+</body>
+</html>

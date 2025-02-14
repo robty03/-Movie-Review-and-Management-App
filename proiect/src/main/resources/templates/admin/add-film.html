@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link href="/css/styles.css" rel="stylesheet">
+  <title>Adaugă Film</title>
+</head>
+<body>
+<h1>Adaugă un Film</h1>
+<form th:action="@{/admin/add-film}" method="post">
+  <label for="titlu">Titlu:</label>
+  <input type="text" id="titlu" name="titlu" required>
+  <label for="gen">Gen:</label>
+  <input type="text" id="gen" name="gen" required>
+  <label for="descriere">Descriere:</label>
+  <input type="text" id="descriere" name="descriere" required>
+  <button type="submit" class="primary-button">Adaugă</button>
+</form>
+<a th:href="@{/admin/filme}" class="secondary-button">Înapoi la lista filmelor</a>
+</body>
+</html>

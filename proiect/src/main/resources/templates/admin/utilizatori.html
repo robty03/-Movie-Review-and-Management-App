@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Gestionare Utilizatori</title>
+    <link href="/css/styles.css" rel="stylesheet">
+    <script>
+    function confirmDelete() {
+      return confirm("Ești sigur că vrei să ștergi acest utilizator?");
+    }
+  </script>
+</head>
+<body>
+<h1>Gestionare Utilizatori</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nume Utilizator</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="utilizator : ${utilizatori}">
+        <td th:text="${utilizator.id}"></td>
+        <td th:text="${utilizator.username}"></td>
+        <td th:text="${utilizator.email}"></td>
+        <td th:text="${utilizator.rol}"></td>
+        <td>
+
+            <button class="danger-button" th:onclick="|if (confirm('Ești sigur că vrei să ștergi acest utilizator?')) location.href='/admin/utilizatori/sterge/' + ${utilizator.id};|">
+                Șterge
+            </button>
+        </td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(utilizatori)}">
+        <td colspan="5">Nu există utilizatori disponibili.</td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/admin/home}" class="secondary-button">Înapoi la Home</a>
+</body>
+</html>
